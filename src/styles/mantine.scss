@@ -1,0 +1,152 @@
+@import './variables';
+
+* {
+  --color-blue: #2C7E85;
+  --color-blue-light: #9FD4CF;
+  --color-corail : #F19274;
+  --color-corail-light :  #EFD2C4;
+  --color-beige :  #FFF9F5;
+  --color-white: #FFF9F5;
+  --color-black: #2C2C2C;
+  --color-black-light: #777777;
+  --color-black-lighter: #6B6B6;
+  --mantine-radius-default: 10px;
+  --mantine-color-white : var(--color-beige);
+  --mantine-font-family : "Roboto-Regular";
+  --mantine-color-error: #994c42;
+}
+
+[data-mantine-color-scheme='light'] .mantine-Switch-track {
+  --burger-color:  var(--color-beige);
+  --switch-color: var(--color-blue);
+  --switch-bg:var(--color-corail);
+}
+
+.mantine-Burger-burger {
+  --burger-color: var(--color-beige);
+}
+
+.mantine-Drawer-close {
+  color: var(--color-blue);
+}
+
+.mantine-Drawer-content, .mantine-Drawer-header, .mantine-Drawer-body {
+  background-color: var(--color-beige);
+  padding: 40px;
+
+  h2 {
+    padding-bottom: 0.7em;
+  }
+}
+
+
+.mantine-Calendar-levelsGroup , .mantine-DatePicker-levelsGroup {
+    display : flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+// Aligne center calendar month when wrapped
+.mantine-Calendar-levelsGroup, .mantine-DatePicker-levelsGroup {
+  justify-content: center;
+}
+
+.mantine-DatePicker-monthCell {
+  padding:0
+}
+
+.mantine-DatePicker-calendarHeaderLevel {
+  font-family: $font-text-bold;
+  font-size: 18px;
+}
+
+.mantine-DatePicker-weekday {
+  opacity: 60%;
+  font-family: $font-text-bold;
+}
+
+.mantine-Carousel-container {
+  overflow: visible;
+}
+
+.mantine-InputWrapper-label {
+  color: $color-blue;
+  font-family: $font-text-bold;
+}
+
+.mantine-Group-root {
+  --mantine-scale : 10px;
+}
+
+.mantine-Carousel-control {
+  background-color: $color-blue;
+  opacity: 1;
+  border : 0;
+  color: $color-white;
+
+  &:hover {
+    background-color: $color-blue-light;
+  }
+}
+
+.mantine-Carousel-controls {
+  justify-content: flex-end;
+  top : -38px;
+  gap: calc($gap / 2);
+}
+// code a tester pour mettre les controls au niveau du titre
+// .mantine-Carousel-controls {
+//   justify-content: flex-end;
+//   top : -74px;
+//   gap: calc($gap / 2);
+// }
+
+// @media screen and (max-width: $s) {
+//   .mantine-Carousel-controls {
+//     top : -63px;
+//   }
+// }
+
+.mantine-Drawer-header {
+  background-color: transparent;
+  padding: 0;
+}
+
+.mantine-Drawer-content{
+  padding: 0;
+}
+
+.mantine-Drawer-body{
+  padding-right: 0;
+}
+
+.mantine-Drawer-close {
+  padding: calc($gap/2);
+  height:fit-content;
+  width: fit-content;
+  background-color: $color-white !important;
+  border: $color-blue 1px solid;
+  border-radius: 50%;
+  margin-right: 10px;
+  > svg {
+    width: 22px !important;
+  }
+
+  &:hover {
+    background-color: $color-blue !important;
+    color: $color-white;
+    border-radius: 50%;
+  }
+}
+
+.mantine-Accordion-label {
+  padding:0;
+}
+
+.mantine-Accordion-content {
+  padding:0;
+}
+
+.mantine-Accordion-item {
+  border-bottom: 0px;
+}

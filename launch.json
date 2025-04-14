@@ -1,0 +1,8 @@
+{
+  "name": "Attach",
+  "address": "127.0.0.1",
+  "port": 9230,
+  "request": "attach",
+  "skipFiles": ["<node_internals>/**"],
+  "type": "node"
+}

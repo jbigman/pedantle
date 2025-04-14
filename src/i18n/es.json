@@ -1,0 +1,8 @@
+{
+	"COMMON": {
+		"WITH_VIDEO": "Only movies with video",
+		"RELEASE_DATE": "Date de sortie",
+		"GENRES": "Genres",
+		"SCORE": "Score"
+	}
+}

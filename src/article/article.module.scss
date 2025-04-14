@@ -1,0 +1,29 @@
+.movie {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.valid {
+  color: default;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.unknown {
+   background-color: #333;
+  box-shadow: 1px 1px 1px #B8B9BA;
+  color: #333;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 1.2em;
+  line-height: 1.2;
+  display: inline-block;
+  text-align: center;
+  transition: color .3s linear, background-color .5s linear;
+}

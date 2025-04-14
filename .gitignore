@@ -1,0 +1,25 @@
+# Editors
+/.idea
+/.vscode/
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+.next
+/build
+
+# misc
+.env
+.DS_Store
+.env*.local
+npm-debug.log*
+.yarn
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+*/css/*
+tsconfig.tsbuildinfo
