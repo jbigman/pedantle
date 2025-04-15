@@ -1,7 +1,7 @@
-import RandomWikiInfo from 'src/article/article'
+import Page from 'src/article/page'
 
 const Index = () => {
-  return <RandomWikiInfo />
+  return <Page />
 }
 
 export default Index

@@ -7,7 +7,7 @@ function randomIntFromInterval(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-export default function RandomWikiInfo() {
+export default function Article() {
   const titles = [
     'Star Wars',
   ]
