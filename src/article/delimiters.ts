@@ -1,4 +1,5 @@
 export enum Delimiters {
+  TIRET = '-',
   SPACE = ' ',
   NEWLINE = '\n',
   COMMA = ',',

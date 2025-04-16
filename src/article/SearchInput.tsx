@@ -10,6 +10,7 @@ const SearchInput = (props: {
 }) => {
   const [input, setInput] = useState('')
   const [query, setQuery] = useState('')
+  const [inputs, setInputs] = useState<string[]>([])
 
   const fetcher = (url: string) =>
     axios
@@ -35,7 +36,9 @@ const SearchInput = (props: {
   const handleSearch = () => {
     if (!input.trim()) return
     setQuery(input) // Déclenche la requête SWR
+    setInputs((prev) => [...prev, input]) // Ajoute le mot à la liste des mots recherchés
     setInput('') // Réinitialise le champ de recherche
+
   }
 
   return (
@@ -66,6 +69,13 @@ const SearchInput = (props: {
 
       <ul>
         {results?.count}
+      </ul>
+      <ul>
+        {inputs.map((input, index) => (
+          <li key={index} style={{ listStyleType: 'none' }}>
+            {input}
+          </li>
+        ))}
       </ul>
     </div>
   )
