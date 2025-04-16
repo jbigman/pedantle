@@ -1,41 +1,18 @@
-import { useMemo } from 'react'
-import useGetArticle from './useGetArticle'
-import Extract from './extract'
+import Words from './words'
 
-function randomIntFromInterval(min: number, max: number) {
-  // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-export default function Article() {
-  const titles = [
-    'Star Wars',
-  ]
-
-  const randomTitle = useMemo(() => {
-    const index = randomIntFromInterval(0, titles.length - 1)
-    return titles[index]
-  }, [])
-
-  const { article, isLoading, error } = useGetArticle(randomTitle)
-
-  if (isLoading) return <p>Loading random article…</p>
-  if (error) return <p>Error loading article.</p>
+const Article = (props: { value: any }) => {
+  if (!props.value) return <p>No article found.</p>
 
   return (
     <div>
-      {article ? (
-        <>
-          <h2>
-            <Extract value={article.title} />
-          </h2>
-          <p style={{ whiteSpace: 'pre-line' }}>
-            <Extract value={article.extract} />
-          </p>
-        </>
-      ) : (
-        <p>No article found.</p>
-      )}
+      <h2>
+        <Words value={props.value.title} />
+      </h2>
+      <p style={{ whiteSpace: 'pre-line' }}>
+        <Words value={props.value.extract} />
+      </p>
     </div>
   )
 }
+
+export default Article

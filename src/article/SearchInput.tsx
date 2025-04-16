@@ -1,27 +1,52 @@
-import React, { useState } from 'react';
-import useSWR from 'swr';
-import axios from 'axios';
+import { useDebouncedValue } from '@mantine/hooks'
+import type { ArticleDto } from '@t/ArticleDto'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import useSWR from 'swr'
 
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+const SearchInput = (props: {
+  article: ArticleDto
+  onChange: (a: ArticleDto) => void
+}) => {
+  const [input, setInput] = useState('')
+  const [query, setQuery] = useState('')
 
-const SearchInput = () => {
-  const [input, setInput] = useState('');
-  const [query, setQuery] = useState('');
+  const fetcher = (url: string) =>
+    axios
+      .post(url, { w: query, article: props.article })
+      .then((res) => res.data)
 
-  const { data: results, error, isValidating } = useSWR(
-    query ? `https://api/searchWord?query=${query}` : null,
+  const {
+    data: results,
+    error,
+    isValidating,
+  } = useSWR(
+    query ? `/api/searchWord?query=${query}` : null, // Appel à l'API locale
     fetcher
-  );
+  )
+  // Call props.onChange whenever results are updated
+  useEffect(() => {
+    if (results) {
+      console.log('results', results)
+      props.onChange(results.article) // Pass the fetched results to the parent
+    }
+  }, [results, props])
 
   const handleSearch = () => {
-    if (!input.trim()) return;
-    setQuery(input); // Trigger SWR request
-  };
+    if (!input.trim()) return
+    setQuery(input) // Déclenche la requête SWR
+    setInput('') // Réinitialise le champ de recherche
+  }
 
   return (
     <div>
       <h1>Pedantle</h1>
       <input
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch()
+          } // Appel handleSearch si la touche "Entrée" est pressée
+        }}
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -33,17 +58,17 @@ const SearchInput = () => {
       </button>
 
       {isValidating && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>An error occurred while fetching results.</p>}
+      {error && (
+        <p style={{ color: 'red' }}>
+          An error occurred while fetching results.
+        </p>
+      )}
 
       <ul>
-        {results?.map((result: { id: string; guess: string; score: number }) => (
-          <li key={result.id}>
-            <strong>{result.guess}</strong> - Score: {result.score}
-          </li>
-        ))}
+        {results?.count}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default SearchInput;
+export default SearchInput

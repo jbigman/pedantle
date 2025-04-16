@@ -1,4 +1,12 @@
 module.exports = {
+  api: {
+    bodyParser: {
+      sizeLimit: '5mb' // Set desired value here
+    }
+  },
+  serverActions: {
+    bodySizeLimit: '5mb' // Set desired value here
+  },
   i18n: {
     // These are all the locales you want to support in
     // your application
@@ -7,7 +15,7 @@ module.exports = {
     // a non-locale prefixed path e.g. `/hello`
     defaultLocale: 'en-US'
   },
-  webpack (config) {
+  webpack(config) {
     config.infrastructureLogging = { debug: /PackFileCache/ }
     return config
   },

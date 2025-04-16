@@ -1,31 +1,41 @@
-import { Fragment } from 'react'
 import articleStyles from './article.module.scss'
-import { Delimiters } from './delimiters';
+import { Delimiters } from './delimiters'
 
-export default function Word(props: {
-  word: { word: string; guess: string | null; score: number }
+export default function Word({
+  word,
+}: {
+  word: ArticleWord
 }) {
-  const { word } = props
+  if (Object.values(Delimiters).includes(word.o as Delimiters)) {
+    return <span>{word.o}</span>
+  }
 
-  if(Object.values(Delimiters).includes(word.word as Delimiters)) {
+  // Word is found, display original
+  if (word.guess && word.score === 1) {
+    return <span>{word.o}</span>
+  }
+
+  // Word is not yet found display closer guess
+  if (word.guess) {
     return (
-      <span className={articleStyles.delimiter}>
-        {word.word}
+      <span
+        className={`${word.score === 1 ? articleStyles.valid : articleStyles.unknown} ${word.score > 0 ? articleStyles.green : articleStyles.red}`}
+      >
+        {word.guess}
       </span>
     )
   }
-
   return (
     <>
-      {word.word === ' ' ? (
+      {word.o === ' ' ? (
         <span className={articleStyles.space}> </span>
-      ) : word.word === '\n' ? (
+      ) : word.o === '\n' ? (
         <br />
       ) : (
         <span
           className={`${word.score === 1 ? articleStyles.valid : articleStyles.unknown} ${word.score > 0 ? articleStyles.green : articleStyles.red}`}
         >
-          {word.word.replace(/ /g, '\u00A0')}
+          {word.o.replace(/ /g, '\u00A0')}
         </span>
       )}
     </>

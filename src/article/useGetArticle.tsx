@@ -1,5 +1,7 @@
 import axios, { type RawAxiosRequestHeaders } from 'axios'
 import useSWR from 'swr'
+import { inProgressExtract } from './inProgressExtract'
+import type { ArticleDto } from '@t/ArticleDto'
 
 export interface WikipediaPage {
   pageid: number
@@ -44,7 +46,16 @@ const useGetArticle = (title: string) => {
       fetcher
     )
   const page = data?.query?.pages ? Object.values(data.query.pages)[0] : null
-  return { article: page, error, isLoading, mutate }
+
+  if (!page) {
+    return { article: null, error, isLoading, mutate }
+  }
+
+  const modelArticle: ArticleDto = {
+    title: inProgressExtract(page?.title),
+    extract: inProgressExtract(page?.extract),
+  }
+  return { article: modelArticle, error, isLoading, mutate }
 }
 
 export default useGetArticle

@@ -1,6 +1,6 @@
 import { cleanExtract } from './cleanExtract'
 
-export const inProgressExtract = (text: string) => {
+export const inProgressExtract = (text: string) : ArticleWord[] => {
   const extract = cleanExtract(text)
 
   const delimiterPattern = '[-.,;|{}\\[\\] ]' // ← espaces inclus ici
@@ -14,8 +14,8 @@ export const inProgressExtract = (text: string) => {
   let idCounter = 0 // Initialize idCounter outside the map function
   return tokens.map((token) => ({
     id: `${token}-${idCounter++}`,
-    word: token,
-    guess: null,
+    o: token,
+    guess: undefined,
     score: 0,
   }))
 }
